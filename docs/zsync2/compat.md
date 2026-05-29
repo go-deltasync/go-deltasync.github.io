@@ -56,10 +56,36 @@ runs on every push and PR to `main`. It:
 2. Runs `go test -tags=compat -race ./...`
 3. Fails the PR if any of the four round trips diverge by a byte
 
-## What's *not* covered
+## What's covered as of this release
 
-- **Compressed targets** (`Z-Map2` block of the `.zsync` header): we don't
-  produce or consume them in MVP. Reading a C-produced compressed `.zsync`
-  returns a clear error rather than silently producing garbage.
-- **Multi-URL failover**: the format permits multiple `URL:` headers; we
-  read all of them but only try the first.
+- **Multi-URL failover** — `ResolveTargetURL` returns the full list of
+  `URL:` entries embedded in the `.zsync`, and `FetchBlocksMulti` walks
+  them. Network errors / `5xx` / `404` advance to the next URL; any
+  other `4xx` fails fast so a misconfigured URL list doesn't burn
+  through every backup on the same problem. Once a URL accepts a Range
+  request we stick to it for the rest of the missing blocks.
+- **`Z-Map2` reader** — the header parser recognises `Z-Map2:` and
+  `Z-URL:` and decodes the per-entry deltas wire format (with the
+  `0x8000 NOTBLOCKSTART` flag). The parsed restart-point table is
+  exposed at `ControlFile.ZMap`. `ResolveCompressedURLs` is the
+  `Z-Map2`-side counterpart of `ResolveTargetURL`. Byte-exact round
+  trip via `Write` is preserved.
+- **`Z-Map2` + `zsync2: 1.0`** — explicitly rejected at parse time.
+  The [BLAKE3 proposal](proposal-blake3.md) hasn't pinned down random-
+  access deflate semantics yet, so combining the two is left as a
+  separate spec.
+
+## What's still not covered
+
+- **`Z-Map2` maker**. Producing a `.zsync` indexed against a
+  gzip-compressed target requires walking the deflate stream to find
+  Huffman-table-reset block boundaries. Go's `compress/flate` doesn't
+  expose that. A custom deflate-block walker is feasible (~300-500
+  lines) but isn't justified yet — the wild ecosystem of pre-existing
+  `.zsync` files we want to *consume* is produced by upstream `zsyncmake`,
+  which our parser already reads.
+- **`Z-Map2` end-to-end smoke test in CI**. The fetcher side is in
+  place but the round-trip test requires a C-`zsyncmake -Z`-produced
+  gzip `.zsync` on disk; CI's apt `zsync` package doesn't ship the
+  matching `gzip` patches consistently across Ubuntu LTS versions.
+  Tracked as a follow-up.
