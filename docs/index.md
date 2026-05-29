@@ -70,11 +70,17 @@ Implementation is in flight on the `main` branch behind a
 
 ## About go-deltasync
 
-This organization exists to host cross-platform Go implementations of
-file-level delta-synchronization protocols. zsync2 is the first such
-implementation. If other protocols (rsync wire format, casync chunker,
-&hellip;) end up wanting the same cross-platform, no-cgo treatment, this
-is where they'd land. For now &mdash; just zsync2.
+This organization hosts cross-platform Go implementations of file-level
+delta-synchronization protocols. The common thread: single static binary,
+no cgo, and wire compatibility with a canonical reference implementation.
+
+| Project | Family | What it does |
+| --- | --- | --- |
+| **zsync2** | rsync-over-HTTP | Fetch only changed blocks of a file from a plain HTTP server, using a `.zsync` control file. [Docs &raquo;](zsync2/quickstart.md) |
+| **rdiff** | rsync local (librsync) | Compute a standalone signature/delta/patch between two local file versions, byte-compatible with the C `rdiff`. [Docs &raquo;](rdiff/quickstart.md) |
+
+More protocols (a `casync`-style chunker, a standardized VCDIFF codec,
+&hellip;) may land here as they get the same no-cgo, cross-platform treatment.
 
 [Contributing](contributing.md) lays out the two non-negotiables for
 anything that ships here: wire compatibility against a canonical

@@ -1,8 +1,8 @@
-site_name: zsync2
-site_description: Pure-Go, cross-platform zsync — delta file updates over HTTP, byte-compatible with the C reference, with a BLAKE3 roadmap.
+site_name: go-deltasync
+site_description: Pure-Go, cross-platform delta-synchronization tools — zsync2 (delta updates over HTTP) and rdiff (librsync-compatible signature/delta/patch).
 site_url: https://go-deltasync.github.io/
-repo_url: https://github.com/go-deltasync/zsync2
-repo_name: go-deltasync/zsync2
+repo_url: https://github.com/go-deltasync
+repo_name: go-deltasync
 edit_uri: ""
 
 theme:
@@ -20,11 +20,15 @@ theme:
 
 nav:
   - Home: index.md
-  - Quick start: zsync2/quickstart.md
-  - CLI reference: zsync2/cli.md
-  - Wire compatibility: zsync2/compat.md
-  - Proposals:
-      - "BLAKE3 strong checksum": zsync2/proposal-blake3.md
+  - zsync2:
+      - Quick start: zsync2/quickstart.md
+      - CLI reference: zsync2/cli.md
+      - Wire compatibility: zsync2/compat.md
+      - "BLAKE3 strong checksum (proposal)": zsync2/proposal-blake3.md
+  - rdiff:
+      - Quick start: rdiff/quickstart.md
+      - CLI reference: rdiff/cli.md
+      - Wire compatibility: rdiff/compat.md
   - Contributing: contributing.md
 
 markdown_extensions:
