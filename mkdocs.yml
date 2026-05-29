@@ -25,6 +25,7 @@ nav:
       - "zsync2: Quick start": zsync2/quickstart.md
       - "zsync2: CLI reference": zsync2/cli.md
       - "zsync2: Wire compatibility": zsync2/compat.md
+      - "zsync2: BLAKE3 proposal": zsync2/proposal-blake3.md
   - Contributing: contributing.md
 
 markdown_extensions:
