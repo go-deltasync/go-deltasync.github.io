@@ -1,0 +1,40 @@
+site_name: go-deltasync
+site_description: Cross-platform, pure-Go implementations of file-level delta synchronization protocols.
+site_url: https://go-deltasync.github.io/
+repo_url: https://github.com/go-deltasync
+repo_name: go-deltasync
+edit_uri: edit/main/docs/
+
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - go
+    - bash
+    - yaml
+    - python
+  navigation_depth: 3
+  collapse_navigation: false
+  titles_only: false
+  sticky_navigation: true
+
+nav:
+  - Home: index.md
+  - Projects:
+      - zsync2: zsync2/index.md
+      - "zsync2: Quick start": zsync2/quickstart.md
+      - "zsync2: CLI reference": zsync2/cli.md
+      - "zsync2: Wire compatibility": zsync2/compat.md
+  - Contributing: contributing.md
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - fenced_code
+  - codehilite:
+      guess_lang: false
+  - tables
+  - attr_list
+  - def_list
+  - footnotes
