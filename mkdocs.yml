@@ -1,9 +1,9 @@
-site_name: go-deltasync
-site_description: Cross-platform, pure-Go implementations of file-level delta synchronization protocols.
+site_name: zsync2
+site_description: Pure-Go, cross-platform zsync — delta file updates over HTTP, byte-compatible with the C reference, with a BLAKE3 roadmap.
 site_url: https://go-deltasync.github.io/
-repo_url: https://github.com/go-deltasync
-repo_name: go-deltasync
-edit_uri: edit/main/docs/
+repo_url: https://github.com/go-deltasync/zsync2
+repo_name: go-deltasync/zsync2
+edit_uri: ""
 
 theme:
   name: readthedocs
@@ -20,12 +20,11 @@ theme:
 
 nav:
   - Home: index.md
-  - Projects:
-      - zsync2: zsync2/index.md
-      - "zsync2: Quick start": zsync2/quickstart.md
-      - "zsync2: CLI reference": zsync2/cli.md
-      - "zsync2: Wire compatibility": zsync2/compat.md
-      - "zsync2: BLAKE3 proposal": zsync2/proposal-blake3.md
+  - Quick start: zsync2/quickstart.md
+  - CLI reference: zsync2/cli.md
+  - Wire compatibility: zsync2/compat.md
+  - Proposals:
+      - "BLAKE3 strong checksum": zsync2/proposal-blake3.md
   - Contributing: contributing.md
 
 markdown_extensions:
