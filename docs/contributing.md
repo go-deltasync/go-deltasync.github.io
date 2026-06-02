@@ -1,8 +1,3 @@
----
-title: "Contributing"
-weight: 90
----
-
 # Contributing
 
 PRs welcome on any of the org's repositories. Two rules:

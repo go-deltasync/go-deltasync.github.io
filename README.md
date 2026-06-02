@@ -1,18 +1,28 @@
 # go-deltasync.github.io
 
-Documentation site for the [go-deltasync](https://github.com/go-deltasync)
-organization, served at <https://go-deltasync.github.io>.
+The website for the [go-deltasync](https://github.com/go-deltasync) organization,
+served at <https://go-deltasync.github.io>.
 
-Built with [Hugo](https://gohugo.io) (extended) and the
-[hugo-book](https://github.com/alex-shpak/hugo-book) theme, deployed to GitHub
-Pages by `.github/workflows/deploy.yml` on every push to `main`.
+Two static generators, one Pages site:
+
+- **Landing page** (`/`) — built with [Hugo](https://gohugo.io); source in
+  `content/` + `layouts/index.html`, tool cards driven by `[[params.tools]]` in
+  `hugo.toml`.
+- **Documentation** (`/docs/`) — built with [MkDocs](https://www.mkdocs.org)
+  (readthedocs theme); source in `docs/` + `mkdocs.yml`.
+
+`.github/workflows/deploy.yml` builds both on every push to `main` (Hugo into
+`./public`, mkdocs into `./public/docs`) and deploys the combined site to GitHub
+Pages.
 
 ## Local preview
 
 ```bash
-hugo server            # live-reload at http://localhost:1313
-hugo --minify --gc     # build into ./public
-```
+# landing
+hugo server                       # http://localhost:1313
 
-Content lives under `content/docs/<tool>/`; the theme is pulled in as a Hugo
-module (see `hugo.toml` / `go.mod`).
+# docs
+python -m venv .venv && . .venv/bin/activate
+pip install -r requirements.txt
+mkdocs serve                      # http://localhost:8000
+```

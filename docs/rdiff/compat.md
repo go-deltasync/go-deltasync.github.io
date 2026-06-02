@@ -1,8 +1,3 @@
----
-title: "Wire compatibility"
-weight: 3
----
-
 # rdiff — Wire compatibility
 
 `rdiff` reproduces librsync's on-disk formats exactly, so its files are

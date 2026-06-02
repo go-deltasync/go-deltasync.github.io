@@ -1,8 +1,3 @@
----
-title: "CLI reference"
-weight: 2
----
-
 # rdiff — CLI reference
 
 The binary is built on [`cobra`](https://github.com/spf13/cobra), so `--help`

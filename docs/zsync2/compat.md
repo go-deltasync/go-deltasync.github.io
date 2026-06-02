@@ -1,8 +1,3 @@
----
-title: "Wire compatibility"
-weight: 3
----
-
 # Wire compatibility with upstream zsync
 
 The whole point of `go-deltasync/zsync2` is that the `.zsync` it reads and
