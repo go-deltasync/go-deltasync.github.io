@@ -27,28 +27,12 @@ jobs:
           hugo-version: "0.162.1"
           extended: true
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install mkdocs + theme
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
 
-      # Hugo builds the landing page at the site root (./public); mkdocs builds
-      # the documentation into ./public/docs. Hugo runs first; mkdocs only
-      # cleans its own -d directory, so the landing survives.
-      - name: Build landing page (Hugo)
+      - name: Build landing page
         run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
-
-      - name: Build documentation (mkdocs)
-        run: mkdocs build --strict -d public/docs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
