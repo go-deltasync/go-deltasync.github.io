@@ -1,3 +1,8 @@
+---
+title: "CLI reference"
+weight: 2
+---
+
 # CLI reference
 
 Both binaries are built on top of [`cobra`](https://github.com/spf13/cobra),

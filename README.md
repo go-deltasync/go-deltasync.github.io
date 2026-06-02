@@ -1,24 +1,18 @@
 # go-deltasync.github.io
 
-Source for <https://go-deltasync.github.io>, the org-wide documentation site.
+Documentation site for the [go-deltasync](https://github.com/go-deltasync)
+organization, served at <https://go-deltasync.github.io>.
 
-Built with [mkdocs](https://www.mkdocs.org/) using the `readthedocs` theme.
-Deploys to GitHub Pages on every push to `main` via the
-[`deploy-pages`](.github/workflows/deploy.yml) workflow.
+Built with [Hugo](https://gohugo.io) (extended) and the
+[hugo-book](https://github.com/alex-shpak/hugo-book) theme, deployed to GitHub
+Pages by `.github/workflows/deploy.yml` on every push to `main`.
 
 ## Local preview
 
 ```bash
-python3 -m venv .venv
-. .venv/bin/activate
-pip install -r requirements.txt
-mkdocs serve
+hugo server            # live-reload at http://localhost:1313
+hugo --minify --gc     # build into ./public
 ```
 
-Site comes up at <http://localhost:8000>.
-
-## Adding a new project
-
-1. Add a folder under `docs/<project-name>/` with an `index.md`.
-2. Add the new pages to the `nav:` section of `mkdocs.yml`.
-3. PR.
+Content lives under `content/docs/<tool>/`; the theme is pulled in as a Hugo
+module (see `hugo.toml` / `go.mod`).

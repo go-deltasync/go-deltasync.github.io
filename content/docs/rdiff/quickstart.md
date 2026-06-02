@@ -1,3 +1,8 @@
+---
+title: "Quick start"
+weight: 1
+---
+
 # rdiff — Quick start
 
 `rdiff` is a pure-Go, **librsync-interoperable** implementation of the classic
