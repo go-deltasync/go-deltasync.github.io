@@ -1,4 +1,3 @@
-site/
-__pycache__/
-*.pyc
-.venv/
+/public/
+/resources/
+.hugo_build.lock

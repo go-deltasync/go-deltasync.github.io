@@ -1,3 +1,8 @@
+---
+title: "BLAKE3 proposal"
+weight: 4
+---
+
 # Proposal: BLAKE3 strong checksum
 
 **Status:** Draft &mdash; comments welcome on

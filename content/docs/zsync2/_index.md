@@ -1,3 +1,8 @@
+---
+title: "zsync2"
+weight: 10
+---
+
 # zsync2
 
 **A pure-Go, cross-platform reimplementation of the zsync delta-update
@@ -15,7 +20,7 @@ Debian and Ubuntu ISO mirrors all rely on this for delta updates.
 `go-deltasync/zsync2` is a single-binary, cgo-free reimplementation
 that ships the same on-the-wire format as the C reference, runs on
 Linux/macOS/Windows out of the box, and is the staging ground for the
-[BLAKE3 strong-checksum proposal](zsync2/proposal-blake3.md) that
+[BLAKE3 strong-checksum proposal](proposal-blake3.md) that
 replaces the broken MD4 / SHA-1 hashes the protocol historically
 required.
 
@@ -23,10 +28,10 @@ required.
 
 | | Where |
 | --- | --- |
-| Two CLIs &mdash; `gozsync` (client) + `gozsyncmake` (server side) | [Quick start](zsync2/quickstart.md) &middot; [CLI reference](zsync2/cli.md) |
-| 100 % statement coverage on the protocol package | [Wire compatibility](zsync2/compat.md) |
-| Byte-identical interop with Phipps' C `zsync` and AppImageCommunity's C++ `zsync2` | [Wire compatibility](zsync2/compat.md#what-we-test-against) |
-| Roadmap for BLAKE3 + modern integrity guarantees | [BLAKE3 proposal](zsync2/proposal-blake3.md) |
+| Two CLIs &mdash; `gozsync` (client) + `gozsyncmake` (server side) | [Quick start](quickstart.md) &middot; [CLI reference](cli.md) |
+| 100 % statement coverage on the protocol package | [Wire compatibility](compat.md) |
+| Byte-identical interop with Phipps' C `zsync` and AppImageCommunity's C++ `zsync2` | [Wire compatibility](compat.md#what-we-test-against) |
+| Roadmap for BLAKE3 + modern integrity guarantees | [BLAKE3 proposal](proposal-blake3.md) |
 
 ## Install
 
@@ -56,11 +61,11 @@ gozsync --input ./old-version --output ./new-version \
 ```
 
 Full walk-through with a three-terminal end-to-end test on the
-[Quick start](zsync2/quickstart.md) page.
+[Quick start](quickstart.md) page.
 
 ## What's coming
 
-The active design discussion is the [BLAKE3 proposal](zsync2/proposal-blake3.md):
+The active design discussion is the [BLAKE3 proposal](proposal-blake3.md):
 swap MD4 (broken since 2004) and SHA-1 (broken since 2017) for BLAKE3
 across the wire format, keep the legacy `.zsync` path readable forever,
 and ship a `.zsync2` alongside it for clients that can use it.
@@ -76,7 +81,7 @@ no cgo, and wire compatibility with a canonical reference implementation.
 
 | Project | Family | What it does |
 | --- | --- | --- |
-| **zsync2** | rsync-over-HTTP | Fetch only changed blocks of a file from a plain HTTP server, using a `.zsync` control file. [Docs &raquo;](zsync2/quickstart.md) |
+| **zsync2** | rsync-over-HTTP | Fetch only changed blocks of a file from a plain HTTP server, using a `.zsync` control file. [Docs &raquo;](quickstart.md) |
 | **rdiff** | rsync local (librsync) | Compute a standalone signature/delta/patch between two local file versions, byte-compatible with the C `rdiff`. [Docs &raquo;](rdiff/quickstart.md) |
 
 More protocols (a `casync`-style chunker, a standardized VCDIFF codec,
