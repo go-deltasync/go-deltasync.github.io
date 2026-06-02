@@ -1,28 +1,20 @@
 # go-deltasync.github.io
 
-The website for the [go-deltasync](https://github.com/go-deltasync) organization,
-served at <https://go-deltasync.github.io>.
+The organization's institutional landing page, served at
+<https://go-deltasync.github.io> and built with [Hugo](https://gohugo.io).
+It is a single page (custom `layouts/index.html`, tool cards driven by
+`[[params.tools]]` in `hugo.toml`).
 
-Two static generators, one Pages site:
+Documentation lives in a separate repository,
+[go-deltasync/docs](https://github.com/go-deltasync/docs) — MkDocs Material
+versioned with [mike](https://github.com/jimporter/mike), served at
+<https://go-deltasync.github.io/docs/>. This page links there.
 
-- **Landing page** (`/`) — built with [Hugo](https://gohugo.io); source in
-  `content/` + `layouts/index.html`, tool cards driven by `[[params.tools]]` in
-  `hugo.toml`.
-- **Documentation** (`/docs/`) — built with [MkDocs](https://www.mkdocs.org)
-  (readthedocs theme); source in `docs/` + `mkdocs.yml`.
-
-`.github/workflows/deploy.yml` builds both on every push to `main` (Hugo into
-`./public`, mkdocs into `./public/docs`) and deploys the combined site to GitHub
-Pages.
+`.github/workflows/deploy.yml` builds the landing with Hugo and deploys it to
+GitHub Pages on every push to `main`.
 
 ## Local preview
 
 ```bash
-# landing
-hugo server                       # http://localhost:1313
-
-# docs
-python -m venv .venv && . .venv/bin/activate
-pip install -r requirements.txt
-mkdocs serve                      # http://localhost:8000
+hugo server      # http://localhost:1313
 ```
