@@ -1,22 +1,37 @@
 baseURL = "https://go-deltasync.github.io/"
 title = "go-deltasync"
-enableGitInfo = false
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 
-[module]
-  [[module.imports]]
-    path = "github.com/alex-shpak/hugo-book"
+[markup.goldmark.renderer]
+  unsafe = true
 
-[markup]
-  [markup.goldmark.renderer]
-    unsafe = true
-  [markup.tableOfContents]
-    startLevel = 2
-    endLevel = 3
-
-[params]
-  BookTheme = "auto"
-  BookToC = true
-  BookSection = "docs"
-  BookRepo = "https://github.com/go-deltasync"
-  BookServiceWorker = false
-  BookSearch = true
+[[params.tools]]
+  name = "zsync2"
+  blurb = "Download only the changed bytes over plain HTTP."
+  ref = "zsync"
+  docs = "/docs/zsync2/"
+  repo = "https://github.com/go-deltasync/zsync2"
+[[params.tools]]
+  name = "rdiff"
+  blurb = "rsync signature / delta / patch."
+  ref = "librsync"
+  docs = "/docs/rdiff/"
+  repo = "https://github.com/go-deltasync/rdiff"
+[[params.tools]]
+  name = "zchunk"
+  blurb = "Content-defined chunked container + HTTP-Range delta."
+  ref = "zchunk (Fedora/DNF)"
+  docs = "/docs/zchunk/"
+  repo = "https://github.com/go-deltasync/zchunk"
+[[params.tools]]
+  name = "vcdiff"
+  blurb = "VCDIFF (RFC 3284) delta encode/decode."
+  ref = "xdelta3"
+  docs = "/docs/vcdiff/"
+  repo = "https://github.com/go-deltasync/vcdiff"
+[[params.tools]]
+  name = "bita"
+  blurb = "Differential file sync over HTTP (.cba archives)."
+  ref = "oll3/bita"
+  docs = "/docs/bita/"
+  repo = "https://github.com/go-deltasync/bita"

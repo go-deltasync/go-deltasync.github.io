@@ -1,8 +1,3 @@
----
-title: "zsync2"
-weight: 10
----
-
 # zsync2
 
 **A pure-Go, cross-platform reimplementation of the zsync delta-update
@@ -82,11 +77,11 @@ no cgo, and wire compatibility with a canonical reference implementation.
 | Project | Family | What it does |
 | --- | --- | --- |
 | **zsync2** | rsync-over-HTTP | Fetch only changed blocks of a file from a plain HTTP server, using a `.zsync` control file. [Docs &raquo;](quickstart.md) |
-| **rdiff** | rsync local (librsync) | Compute a standalone signature/delta/patch between two local file versions, byte-compatible with the C `rdiff`. [Docs &raquo;](rdiff/quickstart.md) |
+| **rdiff** | rsync local (librsync) | Compute a standalone signature/delta/patch between two local file versions, byte-compatible with the C `rdiff`. [Docs &raquo;](../rdiff/quickstart.md) |
 
 More protocols (a `casync`-style chunker, a standardized VCDIFF codec,
 &hellip;) may land here as they get the same no-cgo, cross-platform treatment.
 
-[Contributing](contributing.md) lays out the two non-negotiables for
+[Contributing](../contributing.md) lays out the two non-negotiables for
 anything that ships here: wire compatibility against a canonical
 reference, and no cgo.

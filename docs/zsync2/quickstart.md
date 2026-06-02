@@ -1,8 +1,3 @@
----
-title: "Quick start"
-weight: 1
----
-
 # Quick start
 
 ## Install
