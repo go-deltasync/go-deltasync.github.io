@@ -11,10 +11,20 @@
     --border: #d0d7de; --accent: #0969da; --accent-fg: #ffffff;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme]) {
       --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --card: #161b22;
       --border: #30363d; --accent: #4493f8; --accent-fg: #0d1117;
     }
+  }
+  /* Forced dark (manual toggle). */
+  :root[data-theme="dark"] {
+      --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --card: #161b22;
+      --border: #30363d; --accent: #4493f8; --accent-fg: #0d1117;
+  }
+  .theme-toggle {
+    position: fixed; top: 14px; right: 14px; z-index: 10;
+    font: inherit; font-size: .8rem; cursor: pointer; padding: 6px 12px;
+    color: var(--fg); background: var(--card); border: 1px solid var(--border); border-radius: 999px;
   }
   * { box-sizing: border-box; }
   body {
@@ -55,8 +65,13 @@
   a { color: var(--accent); }
 </style>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script>
+  // Set the saved theme before paint to avoid a flash; "system" leaves no attribute.
+  (function(){var m=localStorage.getItem('theme');if(m&&m!=='system')document.documentElement.setAttribute('data-theme',m);})();
+</script>
 </head>
 <body>
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light, dark or system theme"><span id="theme-label">🖥️ System</span></button>
   <header class="wrap">
     <img class="logo" src="/img/logo.svg" alt="go-deltasync logo" width="88" height="88">
     <h1>go-deltasync</h1>
@@ -102,5 +117,15 @@
   <footer class="wrap">
     BSD-3-Clause · <a href="https://github.com/go-deltasync">github.com/go-deltasync</a>
   </footer>
+  <script>
+  (function(){
+    var order=['system','light','dark'], root=document.documentElement;
+    var labels={system:'🖥️ System',light:'☀️ Light',dark:'🌙 Dark'};
+    function apply(m){ if(m==='system'){root.removeAttribute('data-theme');}else{root.setAttribute('data-theme',m);} localStorage.setItem('theme',m); var el=document.getElementById('theme-label'); if(el)el.textContent=labels[m]; }
+    var mode=localStorage.getItem('theme')||'system'; apply(mode);
+    var btn=document.getElementById('theme-toggle');
+    if(btn) btn.addEventListener('click',function(){ mode=order[(order.indexOf(mode)+1)%order.length]; apply(mode); });
+  })();
+  </script>
 </body>
 </html>
