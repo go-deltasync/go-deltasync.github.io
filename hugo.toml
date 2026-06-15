@@ -26,7 +26,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.tools]]
   name = "vcdiff"
   blurb = "VCDIFF (RFC 3284) delta encode/decode."
-  ref = "xdelta3"
+  ref = "open-vcdiff"
   docs = "/docs/latest/vcdiff/"
   repo = "https://github.com/go-deltasync/vcdiff"
 [[params.tools]]

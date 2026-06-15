@@ -23,6 +23,7 @@
   }
   .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
   header { padding: 72px 0 32px; text-align: center; }
+  .logo { width: 88px; height: 88px; margin: 0 auto 18px; display: block; }
   h1 { font-size: 2.6rem; margin: 0 0 .3em; letter-spacing: -.02em; }
   .tagline { font-size: 1.2rem; color: var(--muted); margin: 0 auto; max-width: 640px; }
   .pills { margin: 22px 0 0; }
@@ -37,21 +38,27 @@
   }
   .btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
   .btn.ghost { color: var(--fg); background: transparent; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; padding: 24px 0 8px; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  h2.section { text-align: center; margin: 40px 0 4px; font-size: 1.4rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; padding: 16px 0 8px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; }
   .card h3 { margin: 0 0 .35em; font-size: 1.2rem; }
+  .card h3 a { text-decoration: none; }
   .card h3 code { font-size: 1.2rem; }
-  .card p { margin: 0 0 .8em; color: var(--fg); }
-  .card .ref { color: var(--muted); font-size: .85rem; }
+  .card p { margin: 0 0 .8em; color: var(--fg); font-size: .95rem; }
+  .card .ref { color: var(--muted); font-size: .85rem; margin: 0 0 .6em; }
+  .card .badges { margin-top: auto; }
+  .card .badges img { height: 20px; vertical-align: middle; margin-right: 4px; }
   .card .links { margin-top: .7em; }
   .card .links a { color: var(--accent); text-decoration: none; font-weight: 600; margin-right: 14px; }
   .principles { color: var(--muted); text-align: center; padding: 10px 0 0; }
   footer { color: var(--muted); text-align: center; padding: 40px 0 56px; font-size: .9rem; }
   a { color: var(--accent); }
 </style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 </head>
 <body>
   <header class="wrap">
+    <img class="logo" src="/img/logo.svg" alt="go-deltasync logo" width="88" height="88">
     <h1>go-deltasync</h1>
     <p class="tagline">Pure-Go, cgo-free building blocks for <strong>delta synchronization</strong> —
       move and store only the bytes that actually change between two versions of a file.</p>
@@ -69,20 +76,27 @@
   </header>
 
   <main class="wrap">
+    <h2 class="section">Repositories</h2>
     <section class="grid">
       {{ range .Site.Params.tools }}
       <article class="card">
-        <h3><code>{{ .name }}</code></h3>
+        <h3><a href="https://github.com/go-deltasync/{{ .name }}"><code>{{ .name }}</code></a></h3>
         <p>{{ .blurb }}</p>
         <div class="ref">interoperates with <strong>{{ .ref }}</strong></div>
         <div class="links">
           <a href="{{ .docs }}">Docs →</a>
           <a href="{{ .repo }}">Source ↗</a>
         </div>
+        <div class="badges">
+          <a href="https://github.com/go-deltasync/{{ .name }}/actions/workflows/ci.yml"><img src="https://github.com/go-deltasync/{{ .name }}/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+          <img src="https://img.shields.io/badge/coverage-100%25-brightgreen" alt="coverage 100%">
+        </div>
       </article>
       {{ end }}
     </section>
-    <p class="principles">Each tool is verified byte-for-byte against its reference implementation.</p>
+    <p class="principles">Every module is pure Go with <code>CGO_ENABLED=0</code> and a cobra CLI, held at
+      100% statement coverage as a CI gate on its core library, and verified byte-for-byte (wire-compatible)
+      against its reference implementation. BSD-3-Clause throughout.</p>
   </main>
 
   <footer class="wrap">
