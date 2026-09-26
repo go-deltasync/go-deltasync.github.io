@@ -18,6 +18,12 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   docs = "/docs/latest/rdiff/"
   repo = "https://github.com/go-deltasync/rdiff"
 [[params.tools]]
+  name = "chunk"
+  blurb = "Cut a stream where the bytes say, not where a counter does."
+  ref = "the chunker inside bita, with a name"
+  docs = "/docs/latest/chunk/"
+  repo = "https://github.com/go-deltasync/chunk"
+[[params.tools]]
   name = "zchunk"
   blurb = "Content-defined chunked container + HTTP-Range delta."
   ref = "zchunk (Fedora/DNF)"
