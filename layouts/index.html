@@ -3,76 +3,52 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{{/* Dark Reader repaints pages that already draw their own dark theme, as this one does: ask it to stand aside. */}}
-<meta name="darkreader-lock">
 <title>{{ .Site.Title }} — pure-Go delta synchronization</title>
 <meta name="description" content="Pure-Go, cgo-free building blocks for delta synchronization: zsync2, rdiff, zchunk, vcdiff and bita.">
-<style>
-  :root {
-    --bg: #ffffff; --fg: #1b1f24; --muted: #57606a; --card: #f6f8fa;
-    --border: #d0d7de; --accent: #0969da; --accent-fg: #ffffff;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --card: #161b22;
-      --border: #30363d; --accent: #4493f8; --accent-fg: #0d1117;
-    }
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--fg);
-    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
-  header { padding: 72px 0 32px; text-align: center; }
-  h1 { font-size: 2.6rem; margin: 0 0 .3em; letter-spacing: -.02em; }
-  .tagline { font-size: 1.2rem; color: var(--muted); margin: 0 auto; max-width: 640px; }
-  .pills { margin: 22px 0 0; }
-  .pill {
-    display: inline-block; margin: 4px; padding: 3px 10px; font-size: .82rem;
-    color: var(--muted); background: var(--card); border: 1px solid var(--border); border-radius: 999px;
-  }
-  .cta { margin: 30px 0 0; }
-  .btn {
-    display: inline-block; padding: 10px 18px; margin: 4px; border-radius: 8px; text-decoration: none;
-    font-weight: 600; border: 1px solid var(--border);
-  }
-  .btn .icon{display:inline-block;vertical-align:-0.15em;margin-right:.45em}
-  .btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
-  .btn.ghost { color: var(--fg); background: transparent; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; padding: 24px 0 8px; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
-  .card h3 { margin: 0 0 .35em; font-size: 1.2rem; }
-  .card h3 code { font-size: 1.2rem; }
-  .card p { margin: 0 0 .8em; color: var(--fg); }
-  .card .ref { color: var(--muted); font-size: .85rem; }
-  .card .links { margin-top: .7em; }
-  .card .links a { color: var(--accent); text-decoration: none; font-weight: 600; margin-right: 14px; }
-  .principles { color: var(--muted); text-align: center; padding: 10px 0 0; }
-  footer { color: var(--muted); text-align: center; padding: 40px 0 56px; font-size: .9rem; }
-  a { color: var(--accent); }
-</style>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+{{ partial "styles.html" . }}
+{{/* The template's own rules for what <main> holds, kept for it alone (class legacy),
+     its colours read from the kit's tokens. Written by landingmigrate. */}}
+<style>
+.legacy{--fg:var(--ink);--muted:var(--slate);--card:var(--bg-soft);--border:var(--line)}
+.legacy .grid{display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; padding: 24px 0 8px;}
+.legacy .card{background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px;}
+.legacy .card h3{margin: 0 0 .35em; font-size: 1.2rem;}
+.legacy .card h3 code{font-size: 1.2rem;}
+.legacy .card p{margin: 0 0 .8em; color: var(--fg);}
+.legacy .card .ref{color: var(--muted); font-size: .85rem;}
+.legacy .card .links{margin-top: .7em;}
+.legacy .card .links a{color: var(--accent); text-decoration: none; font-weight: 600; margin-right: 14px;}
+.legacy .principles{color: var(--muted); text-align: center; padding: 10px 0 0;}
+</style>
 </head>
-<body>
-  <header class="wrap">
-    <h1>go-deltasync</h1>
-    <p class="tagline">Pure-Go, cgo-free building blocks for <strong>delta synchronization</strong> —
-      move and store only the bytes that actually change between two versions of a file.</p>
-    <div class="pills">
-      <span class="pill">no cgo</span>
-      <span class="pill">single static binary</span>
-      <span class="pill">importable Go package</span>
-      <span class="pill">wire-compatible</span>
-      <span class="pill">100% test coverage</span>
-    </div>
-    <div class="cta">
-      <a class="btn primary" href="/docs/">{{ partial "icons/book.html" . }}Documentation</a>
-      <a class="btn ghost" href="https://github.com/go-deltasync">{{ partial "icons/mark-github.html" . }}GitHub</a>
-    </div>
-  </header>
+<body class="lm">
+  <header class="nav"><div class="wrap">
+    <a class="brand" href="/"><img class="glyph" src="/favicon.svg" width="32" height="32" alt="go-deltasync logo"> {{ .Site.Title }}</a>
+    {{ partial "theme-toggle.html" . }}
+  </div></header>
+  {{ partial "fork-ribbon.html" "https://github.com/go-deltasync" }}
 
-  <main class="wrap">
+  <div class="hero"><div class="wrap">
+    <div>
+      <h1 class="head">go-deltasync</h1>
+      <p class="sub">Pure-Go, cgo-free building blocks for <strong>delta synchronization</strong> —
+      move and store only the bytes that actually change between two versions of a file.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="/docs/">{{ partial "icons/book.html" . }}Documentation</a>
+        <a class="btn btn-ghost" href="https://github.com/go-deltasync">{{ partial "icons/github.html" . }}GitHub</a>
+      </div>
+      <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">no cgo</span>{{ end }}<span class="pill">single static binary</span><span class="pill">importable Go package</span><span class="pill">wire-compatible</span><span class="pill">100% test coverage</span></div>
+    </div>
+    {{ partial "hero-carousel.html" . }}
+  </div></div>
+
+  {{ with .Site.Params.repos }}<div class="strip"><div class="wrap">
+    <span class="lead-line">One organisation, <b>{{ len . }}</b> repositories</span>
+    <div class="mods">{{ range . }}<a href="#repos">{{ .name }}</a>{{ end }}</div>
+  </div></div>{{ end }}
+
+  <main id="repos" class="legacy"><div class="wrap">
     <section class="grid">
       {{ range .Site.Params.tools }}
       <article class="card">
@@ -87,10 +63,8 @@
       {{ end }}
     </section>
     <p class="principles">Each tool is verified byte-for-byte against its reference implementation.</p>
-  </main>
+    </div></main>
 
-  <footer class="wrap">
-    BSD-3-Clause · <a href="https://github.com/go-deltasync">github.com/go-deltasync</a>
-  </footer>
+  <footer><div class="wrap"><span>{{ if not (partial "mantra-on.html" $) }}BSD-3-Clause · {{ end }}<a href="https://github.com/go-deltasync">github.com/go-deltasync</a></span></div></footer>
 </body>
 </html>
