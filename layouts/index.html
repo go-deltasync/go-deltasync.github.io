@@ -32,13 +32,11 @@
   <div class="hero"><div class="wrap">
     <div>
       <h1 class="head">go-deltasync</h1>
-      <p class="sub">Pure-Go, cgo-free building blocks for <strong>delta synchronization</strong> —
+      <p class="sub">{{ if partial "mantra-on.html" . }}Go{{ else }}Pure-Go{{ end }}, {{ if not (partial "mantra-on.html" $) }}cgo-free{{ end }} building blocks for <strong>delta synchronization</strong> —
       move and store only the bytes that actually change between two versions of a file.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="/docs/">{{ partial "icons/book.html" . }}Documentation</a>
-        <a class="btn btn-ghost" href="https://github.com/go-deltasync">{{ partial "icons/github.html" . }}GitHub</a>
-      </div>
-      <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">no cgo</span>{{ end }}<span class="pill">single static binary</span><span class="pill">importable Go package</span><span class="pill">wire-compatible</span><span class="pill">100% test coverage</span></div>
+      {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
+      {{ partial "cta.html" . }}
+      <div class="trust">{{ if not (partial "mantra-on.html" $) }}{{ if not (partial "mantra-on.html" $) }}<span class="pill">no cgo</span>{{ end }}{{ end }}<span class="pill">single static binary</span><span class="pill">importable Go package</span><span class="pill">wire-compatible</span><span class="pill">100% test coverage</span></div>
     </div>
     {{ partial "hero-carousel.html" . }}
   </div></div>
