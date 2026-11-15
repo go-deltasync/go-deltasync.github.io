@@ -67,3 +67,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   chipFgDark = "#85e3ef"
   statsEnd = "#caf3f8"
   bandText = "#dcf7fa"
+
+# The hero's buttons, rendered by landingkit's cta.html in the kit's order.
+[[params.cta]]
+  kind  = "docs"
+  href  = "/docs/"
+  label = "Documentation"
+[[params.cta]]
+  kind  = "github"
+  href  = "https://github.com/go-deltasync"
+  label = "GitHub"
